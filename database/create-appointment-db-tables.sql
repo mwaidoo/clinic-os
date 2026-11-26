@@ -1,30 +1,7 @@
-/*DROP DATABASE clinic_os;*/
-/*CREATE DATABASE clinic_os;*/
-/*USE clinic_os;*/
+/*DROP DATABASE appointment_db;*/
+/*CREATE DATABASE appointment_db;*/
+/*USE appointment_db;*/
 /*SELECT DATABASE();*/
-
-CREATE TABLE resource_category (
-    id INT AUTO_INCREMENT,
-    name VARCHAR(64) NOT NULL,
-    code VARCHAR(16) NOT NULL,
-    max_concurrent_reservations INT NOT NULL DEFAULT 1,
-    CONSTRAINT pk_resource_category PRIMARY KEY (id),
-    CONSTRAINT uq_resource_category_name UNIQUE (name),
-    CONSTRAINT uq_resource_category_code UNIQUE (code),
-    CONSTRAINT chk_resource_max_concurrent_reservations CHECK (max_concurrent_reservations > 0)
-)  ENGINE=INNODB DEFAULT CHARACTER SET UTF8MB4 COLLATE UTF8MB4_0900_AS_CS;
-
-CREATE TABLE resource (
-    id INT AUTO_INCREMENT,
-    resource_category_id INT NOT NULL,
-    name VARCHAR(64) NOT NULL,
-    code VARCHAR(16) NOT NULL,
-    CONSTRAINT pk_resource PRIMARY KEY (id),
-    CONSTRAINT fk_resource_category FOREIGN KEY (resource_category_id)
-        REFERENCES resource_category (id),
-    CONSTRAINT uq_resource_name UNIQUE (name),
-    CONSTRAINT uq_resource_code UNIQUE (code)
-)  ENGINE=INNODB DEFAULT CHARACTER SET UTF8MB4 COLLATE UTF8MB4_0900_AS_CS;
 
 CREATE TABLE appointment_type (
     id INT AUTO_INCREMENT,
